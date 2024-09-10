@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: arjunpt/eks-python-argo
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "022499010678.dkr.ecr.us-east-1.amazonaws.com/python:latest"
 
 ingress:
   enabled: false
