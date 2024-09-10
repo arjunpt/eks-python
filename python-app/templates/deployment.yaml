@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: python-web-app
-        image: arjunpt/go-web-app:{{ .Values.image.tag }}
+        image: arjunpt/python-web-app:{{ .Values.image.tag }}
         ports:
         - containerPort: 5000 #port on docker file 
 
