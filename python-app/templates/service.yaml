@@ -4,10 +4,11 @@ metadata:
   name: python-web-app
 spec:
   selector:
-    app: python-web-app #this should match the pod label to perform the service discovery
-  type: ClusterIP
+    app: python-web-app  # This should match the pod label to perform the service discovery
+  type: NodePort
   ports:
   - name: python-web-app
     protocol: TCP
     port: 80
     targetPort: 5000
+    nodePort: 30007  # Optional: Specify a port in the range 30000-32767, or remove this line to let Kubernetes assign one
