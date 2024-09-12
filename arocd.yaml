@@ -1,0 +1,14 @@
+project: default
+source:
+  repoURL: https://github.com/arjunpt/eks-python-argo/
+  path: python-app
+  targetRevision: HEAD
+  helm:
+    valueFiles:
+      - values.yaml
+destination:
+  server: https://kubernetes.default.svc
+  namespace: app
+syncPolicy:
+  automated:
+    selfHeal: true
