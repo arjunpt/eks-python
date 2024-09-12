@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: python-web-app
-        image: arjunpt/eks-python-argo:{{ .Values.image.tag }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
         - containerPort: 5000 #port on docker file 
 
