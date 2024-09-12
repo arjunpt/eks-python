@@ -2,9 +2,10 @@
 replicaCount: 1
 
 image:
-  repository: arjunpt/eks-python-argo
+  repository: "022499010678.dkr.ecr.us-east-1.amazonaws.com/python"
+  tag: "latest"
   pullPolicy: IfNotPresent
-  tag: "022499010678.dkr.ecr.us-east-1.amazonaws.com/python:latest"
+
 
 service:
   type: NodePort   # Specify NodePort type
