@@ -1,11 +1,69 @@
-name: Docker Image CI
+name: Python application
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_call:
+    inputs:
+      python-version:
+        description: 'Python version to set up'
+        required: true
+        type: string
+      requirements-path:
+        description: 'Path to the requirements.txt file'
+        required: true
+        type: string
+      test-path:
+        description: 'Path to the test file or directory'
+        required: true
+        type: string
+      dockerfile-path:
+        description: 'Path to the Dockerfile'
+        required: true
+        type: string
+      ecr-repo-name:
+        description: 'AWS ECR repository name'
+        required: true
+        type: string
+      ECR_REGISTRY:
+        required: true
+        type: string
+        description: 'ECR_REGISTRY where image is stored'
+      IMAGE_NAME:
+        required: true
+        type: string
+        description: 'dokcer IMAGE_NAME'
+      IMAGE_TAG:
+        required: true
+        type: string
+        description: 'IMAGE_TAG'
 
+    secrets:
+      SNYK_TOKEN:
+        description: 'Snyk token for vulnerability scanning'
+        required: true
+      AWS_ACCESS_KEY:
+        description: 'AWS access key ID'
+        required: true
+      AWS_SECRET_KEY:
+        description: 'AWS secret access key'
+        required: true
+      AWS_REGION:
+        description: 'AWS region for ECR'
+        required: true
+      EC2_HOST:
+        description: 'EC2 host for SSH deployment'
+        required: true
+      EC2_SSH_KEY:
+        description: 'SSH private key for EC2'
+        required: true
+      EC2_USERNAME:
+        description: 'EC2 username'
+        required: true
+      SONAR_TOKEN:
+        description: 'sonar token for authentication'
+        required: true
+      SONAR_HOST_URL:
+        description: 'sonarqube URL endpoint'
+        required: true
 jobs:
   # Lint Stage
   lint_test:
