@@ -38,7 +38,11 @@ on:
       kubernetes-manifest:
         required: true
         type: string
-        description: 'path to the kubernetes manifest file'
+        description: 'path to the kubernetes deploymnent manifest file'
+      service-manifest:
+        required: true
+        type: string
+        description: 'path to the kubernetes service manifest file'
       
 
     secrets:
@@ -298,4 +302,4 @@ jobs:
         base64-kube-config: ${{ secrets.KUBE_CONFIG_PROD }}
     - run: |
         kubectl apply -f ${{ inputs.kubernetes-manifest }}
-        kubectl apply -f ${{ inputs.kubernetes-manifest }}
+        kubectl apply -f ${{ inputs.service-manifest }}
