@@ -49,15 +49,6 @@ on:
       AWS_REGION:
         description: 'AWS region for ECR'
         required: true
-      EC2_HOST:
-        description: 'EC2 host for SSH deployment'
-        required: true
-      EC2_SSH_KEY:
-        description: 'SSH private key for EC2'
-        required: true
-      EC2_USERNAME:
-        description: 'EC2 username'
-        required: true
       SONAR_TOKEN:
         description: 'sonar token for authentication'
         required: true
