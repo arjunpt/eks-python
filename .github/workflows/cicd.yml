@@ -74,12 +74,12 @@ jobs:
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
-        python-version: "3.10"
+        python-version: ${{ inputs.python-version }}
     
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r src/requirements.txt
+        pip install -r ${{ inputs.requirements-path }}
     
     - name: Lint with flake8
       run: |
@@ -97,17 +97,17 @@ jobs:
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
-        python-version: "3.10"
+        python-version: ${{ inputs.python-version }}
     
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r src/requirements.txt
+        pip install -r ${{ inputs.requirements-path }}
 
     - name: Test with pytest and generate coverage report
       run: |
         export PYTHONPATH=src
-        pytest --cov=src --cov-report=xml --cov-report=html:coverage_report src/test/test.py
+        pytest --cov=src --cov-report=xml --cov-report=html:coverage_report ${{ inputs.test-path }}
 
     - name: Upload coverage report
       uses: actions/upload-artifact@v3
@@ -182,8 +182,8 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         context: .
-        file: ./Dockerfile
-        tags: appdev:latest
+        file: ${{ inputs.dockerfile-path }}
+        tags: ${{ inputs.IMAGE_NAME }}:latest
         load: true
 
     - name: Save Docker image as .tar file
@@ -229,7 +229,7 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         image: appdev:latest
-        args: --file=Dockerfile --severity-threshold=high --sarif-file-output=snyk-docker.sarif
+        args: --file=${{ inputs.dockerfile-path }} --severity-threshold=high --sarif-file-output=snyk-docker.sarif
 
     - name: Upload Snyk Docker report
       uses: actions/upload-artifact@v3
