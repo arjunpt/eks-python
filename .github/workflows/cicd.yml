@@ -297,5 +297,5 @@ jobs:
       with:
         base64-kube-config: ${{ secrets.KUBE_CONFIG_PROD }}
     - run: |
-        kubectl apply -f manifest/deployment.yaml
-        kubectl apply -f manifest/service.yaml
+        kubectl apply -f ${{ inputs.kubernetes-manifest }}
+        kubectl apply -f ${{ inputs.kubernetes-manifest }}
