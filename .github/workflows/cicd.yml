@@ -55,6 +55,9 @@ on:
       SONAR_HOST_URL:
         description: 'sonarqube URL endpoint'
         required: true
+      KUBE_CONFIG_PROD:
+        description: 'kube config base 64 encoded'
+        required: true
 jobs:
   # Lint Stage
   lint_test:
