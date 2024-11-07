@@ -35,6 +35,11 @@ on:
         required: true
         type: string
         description: 'IMAGE_TAG'
+      kubernetes-manifest:
+        required: true
+        type: string
+        description: 'path to the kubernetes manifest file'
+      
 
     secrets:
       SNYK_TOKEN:
