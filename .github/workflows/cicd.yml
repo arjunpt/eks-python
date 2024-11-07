@@ -269,10 +269,13 @@ jobs:
       run: |
         docker load -i /tmp/docker-images.tar
 
-    - name: Build and push Docker image
+    - name: Tag and push Docker image to ECR
+      env:
+        ECR_REGISTRY: ${{ steps.login-pf-aws-ecr.outputs.registry }}
+        IMAGE_NAME: ${{ inputs.IMAGE_NAME }}
       run: |
-        docker tag $IMAGE_NAME:latest $ECR_REGISTRY/$IMAGE_NAME:latest
-        docker push $ECR_REGISTRY/$IMAGE_NAME:latest
+          docker tag $IMAGE_NAME:latest $ECR_REGISTRY/$IMAGE_NAME:latest
+          docker push $ECR_REGISTRY/$IMAGE_NAME:latest
 
   # Post-Deployment Tasks Stagess
   Deploy:
