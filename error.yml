@@ -1,0 +1,26 @@
+apiVersion: apps/v2  # ❌ Wrong API version (should be apps/v1)
+kind: Deploymennt  # ❌ Misspelled "Deployment"
+metadata:
+  name: my-app
+  namespace: defautl  # ❌ Typo in "default"
+spec:
+  replicas: two  # ❌ Should be a number (2), not a string
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-app
+          image: nginx:latest
+          ports:
+            - containerPort: "80"  # ❌ Should be an integer, not a string
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config  # ❌ ConfigMap might not exist
+                  key: db-url
