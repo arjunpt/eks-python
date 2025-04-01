@@ -7,12 +7,11 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY src/ .
 
-RUN mkdir bash
 # Install any dependencies
 RUN pip install -r requirements.txt
 
 # Make port 5000 available to the world outside this container
-EXPOSE 5000
+EXPOSE 8000
 
 # Run app.py when the container launches
 CMD ["python", "app.py"]
