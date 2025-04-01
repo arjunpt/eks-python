@@ -7,6 +7,7 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY src/ .
 
+RUN mkdir bash
 # Install any dependencies
 RUN pip install -r requirements.txt
 
